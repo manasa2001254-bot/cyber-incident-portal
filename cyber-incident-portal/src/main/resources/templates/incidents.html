@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cyber Incident Portal</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div>
+
+        <h1>🛡️ Cyber Incident Portal</h1>
+
+        <div class="subtitle">
+            Secure Incident Response & Management System
+        </div>
+
+    </div>
+
+    <div class="shield">
+        🔐
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <div class="welcome">
+
+        <h2>Security Dashboard</h2>
+
+        <p>
+            Monitor, investigate and manage cybersecurity incidents.
+        </p>
+
+    </div>
+
+
+    <!-- Report New Incident -->
+
+    <a href="/incidents/new"
+       class="button">
+
+        + Report New Incident
+
+    </a>
+
+
+    <!-- Incident Card -->
+
+    <div class="card">
+
+        <h2>🚨 Security Incidents</h2>
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Title</th>
+
+                <th>Status</th>
+
+                <th>Severity</th>
+
+                <th>Action</th>
+
+            </tr>
+
+
+            <tr th:each="incident : ${incidents}">
+
+                <td th:text="${incident.id}">
+                </td>
+
+
+                <td th:text="${incident.title}">
+                </td>
+
+
+                <td>
+
+                    <span class="status"
+                          th:text="${incident.status}">
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <span class="severity"
+                          th:text="${incident.severity}">
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <a class="view-btn"
+                       th:href="@{/incidents/{id}(id=${incident.id})}">
+
+                        View →
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <footer>
+
+        🛡️ Cyber Incident Portal |
+        AWS Cloud-Based Security Application
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>

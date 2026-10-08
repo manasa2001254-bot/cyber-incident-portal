@@ -1,0 +1,8 @@
+{
+  "name": "cyber-incident-portal",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo Website: http://localhost:8080/ && cd cyber-incident-portal && mvnw.cmd spring-boot:run"
+  }
+}

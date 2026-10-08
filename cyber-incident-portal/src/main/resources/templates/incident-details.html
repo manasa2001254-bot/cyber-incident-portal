@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Incident Details</title>
+
+    <!-- Cybersecurity Theme -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <div>
+            <h1>🛡️ Cyber Incident Portal</h1>
+
+            <div class="subtitle">
+                Secure Incident Response & Management System
+            </div>
+        </div>
+
+        <div class="shield">
+            🔐
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <div class="card">
+
+            <h2>🚨 Incident Details</h2>
+
+
+            <!-- Incident Information -->
+            <div th:if="${incident != null}">
+
+                <h2 th:text="${incident.title}"></h2>
+
+                <p>
+                    <strong>ID:</strong>
+                    <span th:text="${incident.id}"></span>
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    <span class="status"
+                          th:text="${incident.status}">
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Severity:</strong>
+                    <span class="severity"
+                          th:text="${incident.severity}">
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Description:</strong>
+                </p>
+
+                <div class="card">
+                    <p th:text="${incident.description}"></p>
+                </div>
+
+
+                <!-- Update Status -->
+                <h3>🔄 Update Status</h3>
+
+                <form th:action="@{/incidents/{id}/status(id=${incident.id})}"
+                      method="post">
+
+                    <label>Select New Status:</label>
+
+                    <select name="status">
+
+                        <option value="OPEN">OPEN</option>
+
+                        <option value="INVESTIGATING">
+                            INVESTIGATING
+                        </option>
+
+                        <option value="CONTAINED">
+                            CONTAINED
+                        </option>
+
+                        <option value="RESOLVED">
+                            RESOLVED
+                        </option>
+
+                    </select>
+
+                    <br><br>
+
+                    <button type="submit">
+                        🔄 Update Status
+                    </button>
+
+                </form>
+
+
+                <br>
+
+
+                <!-- Add Investigation -->
+                <a class="button"
+                   th:href="@{/incidents/{id}/investigation(id=${incident.id})}">
+                    🔍 Add Investigation
+                </a>
+
+
+                <!-- Investigations -->
+                <h3>🔎 Investigations</h3>
+
+                <div th:if="${#lists.isEmpty(investigations)}">
+
+                    <p>
+                        No investigations added yet.
+                    </p>
+
+                </div>
+
+
+                <div th:each="investigation : ${investigations}"
+                     class="card">
+
+                    <h3>Investigation Record</h3>
+
+                    <p>
+                        <strong>Investigator:</strong>
+                        <span th:text="${investigation.investigator}">
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>Notes:</strong>
+                        <span th:text="${investigation.notes}">
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>Action Taken:</strong>
+                        <span th:text="${investigation.actionTaken}">
+                        </span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Incident Not Found -->
+            <div th:if="${incident == null}">
+
+                <h2>⚠️ Incident Not Found</h2>
+
+                <p>
+                    The requested incident could not be found.
+                </p>
+
+            </div>
+
+
+            <br>
+
+            <a href="/incidents" class="button">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer>
+
+            🛡️ Cyber Incident Portal |
+            AWS Cloud-Based Security Application
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

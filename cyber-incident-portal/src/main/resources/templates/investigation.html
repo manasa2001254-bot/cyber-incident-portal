@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Investigation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>🛡️ Cyber Incident Portal</h1>
+        <div class="subtitle">Secure Incident Response & Management System</div>
+    </div>
+    <div class="shield">🔐</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>🔍 Add Investigation</h2>
+
+        <p>
+            Record investigation details and actions taken for this security incident.
+        </p>
+
+        <form th:action="@{/incidents/{id}/investigation/save(id=${investigation.incidentId})}"
+              method="post">
+
+            <label>Investigator:</label>
+            <input type="text"
+                   name="investigator"
+                   placeholder="Enter investigator name"
+                   required>
+
+            <label>Investigation Notes:</label>
+            <textarea name="notes"
+                      rows="6"
+                      placeholder="Enter investigation findings..."
+                      required></textarea>
+
+            <label>Action Taken:</label>
+            <textarea name="actionTaken"
+                      rows="6"
+                      placeholder="Enter actions taken to handle the incident..."
+                      required></textarea>
+
+            <br>
+
+            <button type="submit">💾 Save Investigation</button>
+
+        </form>
+
+        <br>
+
+        <a th:href="@{/incidents/{id}(id=${investigation.incidentId})}"
+           class="button">
+            ← Back to Incident
+        </a>
+
+    </div>
+
+    <footer>
+        🛡️ Cyber Incident Portal |
+        AWS Cloud-Based Security Application
+    </footer>
+
+</div>
+
+</body>
+</html>
